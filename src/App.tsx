@@ -4,7 +4,7 @@ import ChatPanel from './components/ChatPanel';
 import PreviewPanel from './components/PreviewPanel';
 import SettingsModal from './components/SettingsModal';
 import * as storage from './services/storage';
-import { sendMessage, parseResponse } from './services/llm';
+import { sendMessage } from './services/llm';
 import type { ChatMessage } from './types';
 
 function generateId(): string {
