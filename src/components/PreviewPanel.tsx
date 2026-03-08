@@ -15,6 +15,7 @@ export default function PreviewPanel({
     documentVersion,
 }: PreviewPanelProps) {
     const [copied, setCopied] = useState(false);
+    const [downloaded, setDownloaded] = useState(false);
 
     const handleDownload = () => {
         if (!documentMarkdown) return;
@@ -22,9 +23,15 @@ export default function PreviewPanel({
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `system-analysis-v${documentVersion}.md`;
+
+        const dateStr = new Date().toISOString().split('T')[0];
+        a.download = `System_Analysis_v${documentVersion}_${dateStr}.md`;
+
         a.click();
         URL.revokeObjectURL(url);
+
+        setDownloaded(true);
+        setTimeout(() => setDownloaded(false), 3000);
     };
 
     const handleCopy = async () => {
@@ -91,11 +98,23 @@ export default function PreviewPanel({
                         </button>
                         <button
                             onClick={handleDownload}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-surface-300 hover:text-surface-100 hover:bg-surface-700/50 transition-all"
+                            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${downloaded
+                                    ? 'text-emerald-400 bg-emerald-400/10'
+                                    : 'text-surface-300 hover:text-surface-100 hover:bg-surface-700/50'
+                                }`}
                             title="下載 .md 檔案"
                         >
-                            <Download className="w-3.5 h-3.5" />
-                            下載 .md
+                            {downloaded ? (
+                                <>
+                                    <Check className="w-3.5 h-3.5" />
+                                    已儲存至「下載」資料夾
+                                </>
+                            ) : (
+                                <>
+                                    <Download className="w-3.5 h-3.5" />
+                                    下載 .md
+                                </>
+                            )}
                         </button>
                     </div>
                 )}
