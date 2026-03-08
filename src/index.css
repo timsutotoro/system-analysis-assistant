@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-surface-950 text-surface-100 font-sans antialiased;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  #root {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-600;
+  }
+}
+
+@layer components {
+  /* Chat bubbles */
+  .chat-bubble-user {
+    @apply bg-brand-600/20 border border-brand-500/30 rounded-2xl rounded-br-md px-4 py-3;
+  }
+  .chat-bubble-agent {
+    @apply bg-surface-800/60 border border-surface-700/50 rounded-2xl rounded-bl-md px-4 py-3;
+  }
+
+  /* Markdown preview styles */
+  .markdown-preview h1 {
+    @apply text-2xl font-bold text-brand-300 mt-6 mb-3 pb-2 border-b border-surface-700;
+  }
+  .markdown-preview h2 {
+    @apply text-xl font-semibold text-brand-400 mt-5 mb-2 pb-1.5 border-b border-surface-800;
+  }
+  .markdown-preview h3 {
+    @apply text-lg font-semibold text-surface-200 mt-4 mb-2;
+  }
+  .markdown-preview p {
+    @apply text-surface-300 leading-relaxed mb-3;
+  }
+  .markdown-preview ul, .markdown-preview ol {
+    @apply ml-5 mb-3 text-surface-300 space-y-1;
+  }
+  .markdown-preview ul {
+    @apply list-disc;
+  }
+  .markdown-preview ol {
+    @apply list-decimal;
+  }
+  .markdown-preview li {
+    @apply leading-relaxed;
+  }
+  .markdown-preview table {
+    @apply w-full border-collapse mb-4 text-sm;
+  }
+  .markdown-preview thead {
+    @apply bg-surface-800;
+  }
+  .markdown-preview th {
+    @apply text-left px-3 py-2 font-semibold text-surface-200 border border-surface-700;
+  }
+  .markdown-preview td {
+    @apply px-3 py-2 text-surface-300 border border-surface-700/60;
+  }
+  .markdown-preview tbody tr:hover {
+    @apply bg-surface-800/40;
+  }
+  .markdown-preview blockquote {
+    @apply border-l-4 border-brand-500/50 pl-4 py-1 my-3 text-surface-400 italic bg-brand-950/20 rounded-r;
+  }
+  .markdown-preview code {
+    @apply bg-surface-800 text-brand-300 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+  .markdown-preview pre {
+    @apply bg-surface-900 border border-surface-700/50 rounded-lg p-4 mb-4 overflow-x-auto;
+  }
+  .markdown-preview pre code {
+    @apply bg-transparent p-0;
+  }
+  .markdown-preview hr {
+    @apply border-surface-700 my-6;
+  }
+  .markdown-preview a {
+    @apply text-brand-400 hover:text-brand-300 underline underline-offset-2;
+  }
+  .markdown-preview strong {
+    @apply text-surface-100 font-semibold;
+  }
+  .markdown-preview em {
+    @apply text-surface-300 italic;
+  }
+
+  /* Chat markdown (simpler) */
+  .chat-markdown p {
+    @apply text-sm leading-relaxed mb-2 last:mb-0;
+  }
+  .chat-markdown ul, .chat-markdown ol {
+    @apply ml-4 mb-2 text-sm space-y-0.5;
+  }
+  .chat-markdown ul {
+    @apply list-disc;
+  }
+  .chat-markdown ol {
+    @apply list-decimal;
+  }
+  .chat-markdown code {
+    @apply bg-surface-700/50 text-brand-300 px-1 py-0.5 rounded text-xs font-mono;
+  }
+  .chat-markdown pre {
+    @apply bg-surface-900 rounded-lg p-3 mb-2 overflow-x-auto text-xs;
+  }
+  .chat-markdown pre code {
+    @apply bg-transparent p-0;
+  }
+  .chat-markdown strong {
+    @apply text-surface-100 font-semibold;
+  }
+  .chat-markdown h1, .chat-markdown h2, .chat-markdown h3 {
+    @apply font-semibold text-surface-100 mt-2 mb-1;
+  }
+  .chat-markdown h1 { @apply text-base; }
+  .chat-markdown h2 { @apply text-sm; }
+  .chat-markdown h3 { @apply text-sm; }
+
+  /* Glassmorphism panel */
+  .glass-panel {
+    @apply bg-surface-900/70 backdrop-blur-xl border border-surface-700/40;
+  }
+
+  /* Typing indicator */
+  .typing-dot {
+    @apply w-2 h-2 bg-brand-400 rounded-full inline-block mx-0.5;
+    animation: pulseDot 1.4s infinite ease-in-out both;
+  }
+  .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+  .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+  .typing-dot:nth-child(3) { animation-delay: 0s; }
+}
